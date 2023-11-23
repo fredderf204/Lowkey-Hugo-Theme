@@ -5,4 +5,13 @@
 <meta name="description" content="{{ if .IsPage }}{{ or .Params.description .Summary }}{{ else if .IsHome }}{{ .Site.Params.description }}{{ else if .IsNode }}{{ or .Params.description .Summary }}{{ end }}">
 <link rel="canonical" href="{{ .Permalink }}">
 <link rel="robots" href="/robots.txt" />
-
+{{ with site.Params.googleAnalytics }}
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ . }}"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
+ 
+      gtag('config', '{{ . }}');
+    </script>
+{{ end }}
